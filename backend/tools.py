@@ -44,7 +44,9 @@ def execute_tool(tool_call):
     
     if name == "search_knowledge_base":
         query = args.get("query", "")
-        results = rag.retrieve_chunks(query, top_k=3)
+        if isinstance(query, dict):
+            query = json.dumps(query)
+        results = rag.retrieve_chunks(str(query), top_k=3)
         if not results:
             return "No relevant information found."
         formatted = ""
