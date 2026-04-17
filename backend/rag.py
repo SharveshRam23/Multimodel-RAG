@@ -43,7 +43,7 @@ def get_embedding_model():
     global embedding_model
     if embedding_model is None:
         logging.info("Loading SentenceTransformer model...")
-        embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+        embedding_model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
     return embedding_model
 
 def load_index():
